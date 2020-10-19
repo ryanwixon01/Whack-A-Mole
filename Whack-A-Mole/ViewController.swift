@@ -13,6 +13,9 @@ class ViewController: UIViewController
     var screenWidth = 0
     var screenHeight = 0
     
+    var scoreBox = UILabel()
+    var score = 0
+    
     var mole1 = UIButton()
     
     override func viewDidLoad()
@@ -25,11 +28,11 @@ class ViewController: UIViewController
         screenHeight = Int(screenBounds.height)
         
         //frame for keeping the score
-        let scoreBox = UILabel(frame: CGRect(x:20, y:40, width: screenWidth / 5, height: screenHeight / 10))
+        scoreBox = UILabel(frame: CGRect(x:20, y:40, width: screenWidth / 5, height: screenHeight / 10))
         scoreBox.textAlignment = NSTextAlignment.center
         scoreBox.backgroundColor = UIColor.blue
         scoreBox.textColor = UIColor.white
-        scoreBox.text = "0"
+        scoreBox.text = "\(score)"
         
         //color for the ground
         let groundColor = UILabel(frame: CGRect(x:20, y:40, width: screenWidth - 40, height: screenHeight - 60))
@@ -51,5 +54,12 @@ class ViewController: UIViewController
     @objc func moleHit(_sender: UIButton)
     {
         print("Ouch!")
+        
+        //increment score
+        score += 1
+        scoreBox.text = "\(score)"
+        
+        //remove mole
+        mole1.removeFromSuperview()
     }
 }
